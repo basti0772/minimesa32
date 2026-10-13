@@ -128,4 +128,3 @@ Der zugehoerige Lizenztext liegt in
 [`FREEGLUT-LICENSE.txt`](MiniMesa32_Teapot/FREEGLUT-LICENSE.txt).
 TFT_eSPI und das ESP32-Boardpaket unterliegen ihren eigenen Lizenzen.
 Fuer den projektspezifischen Code wurde bislang keine separate Lizenz festgelegt.
-
