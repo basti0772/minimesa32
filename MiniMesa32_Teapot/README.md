@@ -35,9 +35,17 @@ FreeGLUT und stehen unter dessen MIT/X11-artiger Lizenz.
 
 ## Kompilieren und Flashen
 
+Im vollstaendigen GitHub-Repository verwendet `Build-And-Flash.ps1` den gemeinsamen
+Web-Firmware-Build (PowerShell 7 erforderlich) mit der lokalen Displaykonfiguration.
+Im eigenstaendigen ZIP kompiliert der Helfer direkt mit Arduino CLI; dafuer muss
+TFT_eSPI zuvor mit `config/User_Setup.h` konfiguriert werden.
+Browser-Installer und Anleitung: https://basti0772.github.io/minimesa32/
+
+Die folgenden Befehle werden aus diesem Sketch-Ordner ausgefuehrt:
+
 ```powershell
-arduino-cli compile --fqbn esp32:esp32:esp32 .\MiniMesa32_Teapot
+arduino-cli compile --fqbn esp32:esp32:esp32 .
 $port = powershell -ExecutionPolicy Bypass -File .\Find-ESP32Port.ps1
-arduino-cli upload -p $port --fqbn esp32:esp32:esp32 .\MiniMesa32_Teapot
+arduino-cli upload -p $port --fqbn esp32:esp32:esp32 .
 powershell -ExecutionPolicy Bypass -File .\Read-Serial.ps1 -Seconds 10
 ```

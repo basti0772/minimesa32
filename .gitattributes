@@ -1,0 +1,6 @@
+# Core-generated evidence retains its original whitespace.
+firmware/flash_args whitespace=-blank-at-eol
+docs/firmware/flash_args whitespace=-blank-at-eol
+*.bin binary
+*.zip binary
+*.png binary

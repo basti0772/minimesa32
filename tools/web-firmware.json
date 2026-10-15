@@ -1,0 +1,9 @@
+{
+  "name": "MiniMesa32 Utah Teapot",
+  "slug": "minimesa32",
+  "sketch": "MiniMesa32_Teapot",
+  "fqbn": "esp32:esp32:esp32",
+  "chipFamily": "ESP32",
+  "coreVersion": "3.3.12",
+  "tftVersion": "2.5.43"
+}

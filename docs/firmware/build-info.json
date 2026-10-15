@@ -1,0 +1,47 @@
+{
+  "name": "MiniMesa32 Utah Teapot",
+  "version": "1.0.0",
+  "chipFamily": "ESP32",
+  "chip": "esp32",
+  "fqbn": "esp32:esp32:esp32",
+  "coreVersion": "3.3.12",
+  "tftVersion": "2.5.43",
+  "flashMode": "dio",
+  "flashFrequency": "80m",
+  "flashSize": "4MB",
+  "partitionScheme": "default",
+  "offsetSource": "Arduino build output: flash_args",
+  "mergedOffset": 0,
+  "mergedSize": 386432,
+  "sha256": "2a32f7cae49840e930cf9c3e75aaa7f6966dceec2814403ac670b73d225a1324",
+  "parts": [
+    {
+      "file": "MiniMesa32_Teapot.ino.bootloader.bin",
+      "offset": 4096,
+      "offsetHex": "0x1000",
+      "size": 24992,
+      "sha256": "47bbbfca119fe87190f63a67af9d85adff6433bcf3812ec92a9b9c9416a53ad1"
+    },
+    {
+      "file": "MiniMesa32_Teapot.ino.partitions.bin",
+      "offset": 32768,
+      "offsetHex": "0x8000",
+      "size": 3072,
+      "sha256": "148b959cbff1c38aa8e1d5c0ba9d612c54997b945e56a63f41223eef650653a1"
+    },
+    {
+      "file": "boot_app0.bin",
+      "offset": 57344,
+      "offsetHex": "0xE000",
+      "size": 8192,
+      "sha256": "f94c5d786a7a8fab06ac5d10e33bf37711a6697636dc037559ea19cc410a17f0"
+    },
+    {
+      "file": "MiniMesa32_Teapot.ino.bin",
+      "offset": 65536,
+      "offsetHex": "0x10000",
+      "size": 320896,
+      "sha256": "55103f5ff8ba17fe5f17b64d7d23e53d598ff30837d962a11832da8e8546c333"
+    }
+  ]
+}

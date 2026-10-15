@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MiniMesa32 Utah Teapot direkt per USB auf einen klassischen ESP32 installieren.">
+  <title>MiniMesa32 · Web Installer</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="installer.js"></script>
+</head>
+<body>
+<main>
+  <header><a class="brand" href="https://github.com/basti0772/minimesa32">MiniMesa32<span> / WEB INSTALLER</span></a><a href="https://github.com/basti0772/minimesa32">Quellcode ↗</a></header>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">UTAH TEAPOT · SOFTWARE RENDERER</p>
+      <h1>Ein Klassiker.<br>Auf deinem ESP32.</h1>
+      <p class="lead">3D-Rendering, Licht und acht Touch-Tasten. Installiere MiniMesa32 direkt über USB – ohne Arduino IDE.</p>
+      <div class="tags"><span>ESP32-WROOM-32</span><span>ILI9341 · 320 × 240</span><span>4 MB Flash</span></div>
+    </div>
+    <figure><img src="teapot-preview.png" width="320" height="240" alt="Orangefarbener Utah Teapot mit acht Richtungstasten links oben"><figcaption>PC-gerenderte Vorschau mit dem Projekt-Renderer</figcaption></figure>
+  </section>
+  <section class="card" aria-labelledby="install-title">
+    <div class="card-heading"><h2 id="install-title">ESP32 Firmware installieren</h2><span class="version" id="version">Version wird geladen …</span></div>
+    <p>Unterstützt: <strong>klassischer ESP32 / ESP32-WROOM-32</strong> mit 4 MB Flash und der <a href="https://github.com/basti0772/minimesa32#hardware">Projekt-Verdrahtung</a>. Nicht für ESP32-S2, S3, C3 oder andere Chipfamilien.</p>
+    <ol><li>ESP32 mit einem USB-<strong>Datenkabel</strong> anschließen.</li><li>Auf <strong>Install</strong> klicken.</li><li>Den seriellen Port des ESP32 auswählen.</li><li>Installation bestätigen und den Flash-Vorgang abwarten.</li></ol>
+    <aside class="warning"><strong>Vor dem Flashen</strong><p>Die vorhandene Firmware wird ersetzt. Dieses zusammengeführte Image überschreibt auch NVS und damit gespeicherte Touch-Kalibrierungen – selbst ohne vollständiges Löschen des Flashs. Sichere wichtige Daten vorher. Ohne Kalibrierung verwendet die Demo ihre feste Standardzuordnung; diese passt nicht zu jedem Touchpanel.</p></aside>
+    <p>Empfohlen: aktuelles <strong>Chrome oder Edge auf einem Desktop-PC</strong>. Web Serial benötigt HTTPS (lokal auch localhost). Seriellen Monitor und andere Programme schließen, die den Port belegen.</p>
+    <div class="actions">
+      <esp-web-install-button manifest="manifest.json" id="installer" hidden>
+        <button slot="activate" type="button">Install</button>
+        <span slot="unsupported">Dieser Browser unterstützt Web Serial nicht. Bitte Chrome oder Edge auf einem Desktop-PC verwenden.</span>
+        <span slot="not-allowed">Bitte diese Seite über HTTPS oder localhost öffnen.</span>
+      </esp-web-install-button>
+      <a href="firmware/minimesa32.bin" download>Firmware herunterladen ↓</a>
+    </div>
+    <p id="status" role="status" aria-live="polite">Installer wird geladen …</p>
+    <noscript><p>Für die Browser-Installation muss JavaScript aktiviert sein. Die BIN-Datei kannst du auch manuell herunterladen.</p></noscript>
+  </section>
+  <section class="details">
+    <div><h2>Was läuft auf dem Board?</h2><p>Ein kleiner OpenGL-artiger Renderer mit Z-Puffer, RGB565 und 1.024 Dreiecken. Acht Richtungstasten drehen die Teekanne in 45°-Schritten. Das ausgesparte Tastenfeld bleibt flackerfrei.</p><p>Board: <code>esp32:esp32:esp32</code><br>Build: <span id="build">siehe Build-Metadaten</span></p><a href="firmware/build-info.json">Build-Metadaten &amp; SHA-256 ↗</a></div>
+    <div><h2>Verbindung klappt nicht?</h2><p>Anderes Datenkabel oder USB-Port versuchen. Bei Bedarf den passenden USB-UART-Treiber für dein Board installieren. Falls der Bootloader nicht startet: BOOT gedrückt halten, Verbindung erneut starten und nach dem Verbindungsaufbau loslassen.</p><p>Alternative: <a href="https://github.com/basti0772/minimesa32#browser-installation">Arduino CLI / manuelles Flashen</a>. Nach der Installation startet die Animation automatisch.</p></div>
+  </section>
+  <footer>MiniMesa32 · <a href="https://github.com/basti0772/minimesa32">Projekt &amp; Lizenzhinweise</a> · Installation mit <a href="https://esphome.github.io/esp-web-tools/">ESP Web Tools</a></footer>
+</main>
+</body>
+</html>

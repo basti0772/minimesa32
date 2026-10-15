@@ -1,0 +1,45 @@
+name: Build and validate web firmware
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+      - uses: arduino/setup-arduino-cli@v2
+        with:
+          version: '1.5.1'
+      - name: Check committed installer payload
+        run: ./tools/Test-Web-Firmware.ps1
+      - name: Install pinned toolchain
+        run: |
+          $config = Get-Content tools/web-firmware.json -Raw | ConvertFrom-Json
+          arduino-cli config init
+          if ($LASTEXITCODE) { throw 'Arduino config failed' }
+          arduino-cli config add board_manager.additional_urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
+          if ($LASTEXITCODE) { throw 'Board index configuration failed' }
+          arduino-cli core update-index
+          if ($LASTEXITCODE) { throw 'Board index update failed' }
+          arduino-cli core install "esp32:esp32@$($config.coreVersion)"
+          if ($LASTEXITCODE) { throw 'ESP32 core install failed' }
+          arduino-cli lib install "TFT_eSPI@$($config.tftVersion)"
+          if ($LASTEXITCODE) { throw 'TFT_eSPI install failed' }
+      - name: Build and verify merged firmware
+        run: ./tools/Build-Web-Firmware.ps1
+      - name: Check rejection of invalid payloads
+        run: ./tools/Test-Web-Firmware-Negative.ps1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: minimesa32-web-firmware
+          path: |
+            firmware/
+            docs/
+          if-no-files-found: error
